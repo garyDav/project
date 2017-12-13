@@ -1,0 +1,51 @@
+RAMAS.
+git status
+git log 				=> muestra todos los commits de la rama actual
+git branch				=> leer cuantas ramas existen y ver en cual estamos
+git branch mirama		=> crear una nueva rama
+git checkout mirama		=> cambiar de rama
+git checkout -b Test	=> Crea y cambia a la rama Test
+git branch -D mirama	=> eliminar la rama
+FUCIONES (fast-forward).
+Cambiamos a la rama al que queremos fucionar.
+git branch master
+fucionamos mirama con master
+git merge mirama
+
+
+Hook
+cd .git
+cd hooks
+touch post-commit
+nano post-commit
+##################################################
+#!/bin/sh
+git push origin Develop				#Develop es la rama
+ssh ggary@45.32.92.213 'bash -s' < deployment.sh
+##################################################
+cat post-commit
+chmod +x post-commit
+touch deployment.sh
+nano deployment.sh
+##################################################
+#!/bin/sh
+cd Webs/miProyecto/
+git pull origin Develop				#Develop es la rama
+sudo service ghost restart
+##################################################
+
+#Cuando hagamos
+git add -A
+git commit -m "hace todo el proceso del hook"
+
+
+
+
+
+
+
+
+CSS.
+text-transform: uppercase;
+letter-spacing: 5px;
+font-weight: 300;
